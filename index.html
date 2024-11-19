@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeLlevoApp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-left: 20px;
+        }
+
+        .navbar ul li a {
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .navbar .menu-icon {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .navbar ul.collapsed {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .navbar ul.collapsed li {
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .navbar ul.collapsed.show {
+            display: flex;
+        }
+
+        /* Main Content */
+        .content {
+            flex: 1;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 50px 20px;
+            background: white;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            flex: 1 1 calc(33.333% - 40px);
+            margin: 10px;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .benefit-card i {
+            font-size: 3rem;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+
+        .benefit-card p {
+            color: #555;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 50px 20px;
+            background: #007bff;
+            color: white;
+            text-align: center;
+        }
+
+        .testimonial {
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .author {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* Download Section */
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: white;
+            color: #333;
+        }
+
+        .cta {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .cta:hover {
+            background: #0056b3;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: white;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: #007bff;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                transition: max-height 0.3s ease-out;
+            }
+
+            .navbar ul.show {
+                display: flex;
+            }
+
+            .navbar .menu-icon {
+                display: block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .benefit-card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TeLlevoApp</div>
+        <i class="fas fa-bars menu-icon" aria-label="Toggle menu" onclick="toggleMenu()"></i>
+        <ul id="nav-menu" class="collapsed" aria-expanded="false">
+            <li><a href="#benefits">Beneficios</a></li>
+            <li><a href="#testimonials">Testimonios</a></li>
+            <li><a href="#download">Descargar</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Benefits Section -->
+        <section class="benefits" id="benefits">
+            <div class="benefit-card">
+                <i class="fas fa-route"></i>
+                <h3>Rutas Inteligentes</h3>
+                <p>Elige recorridos optimizados que ahorran tiempo y dinero.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Viajes Seguros</h3>
+                <p>Usuarios verificados para una experiencia tranquila.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Fácil de Usar</h3>
+                <p>Diseño intuitivo para que viajes sin complicaciones.</p>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials" id="testimonials">
+            <h2>Lo que dicen nuestros usuarios</h2>
+            <div class="testimonial">
+                "¡Me encanta! Ahora puedo viajar al DUOC con mis compañeros de forma segura y económica."
+                <div class="author">- Camila R.</div>
+            </div>
+            <div class="testimonial">
+                "Una app súper intuitiva y perfecta para organizar mis trayectos."
+                <div class="author">- Juan P.</div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section id="download" class="hero">
+            <h1>Descarga TeLlevoApp</h1>
+            <p>Haz clic en el botón para obtener la APK y empezar a disfrutar.</p>
+            <a class="cta" href="downloads/app-debug.apk" download>Descargar APK</a>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 TeLlevoApp. Todos los derechos reservados. | <a href="#contact">Contáctanos</a></p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('nav-menu');
+            const menuIcon = document.querySelector('.menu-icon');
+            navMenu.classList.toggle('show');
+            const isExpanded = navMenu.classList.contains('show');
+            navMenu.setAttribute('aria-expanded', isExpanded);
+            menuIcon.setAttribute('aria-expanded', isExpanded);
+        }
+    </script>
+</body>
+</html>
